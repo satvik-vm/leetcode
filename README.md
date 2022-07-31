@@ -1,5 +1,5 @@
 # Introduction
-Hi this my leetcode repo. Here I have uploaded all my solutions for leetocde according to problem number.
+Hi this my leetcode repo. Here I have uploaded all my solutions for leetcode according to problem number.
 
 ## Disclaimer
 Although I mostly try some solutions here are not accepted yet by leetcode.
