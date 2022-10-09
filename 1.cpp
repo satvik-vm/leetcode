@@ -26,14 +26,6 @@ vector<int> twoSum(vector<int>& nums, int target) {
 int main(){
     vector<int> nums;
     int a;
-    // while(a != -999){
-    //     cin >> a;
-    //     nums.push_back(a);
-    // }
-    // nums.pop_back();
-    // for(int i = 0; i < nums.size();i++){
-    //     cout << nums[i] << endl;
-    // }
     nums = {3, 3};
     int target = 6;
     vector<int> ans = twoSum(nums, target);
