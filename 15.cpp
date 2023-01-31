@@ -6,44 +6,36 @@ using namespace std;
 
 vector<vector<int>> threeSum(vector<int> &nums)
 {
-    vector<vector<int>> ans;
-    sort(nums.begin(), nums.end());
     int size = nums.size();
-    for (int i = 0; i < size; i++){
-        int j = i + 1;
-        int k = size - 1;
-        while (j < size && j < k){
-            if (nums[j] + nums[k] + nums[i] == 0){
-                ans.push_back({nums[i], nums[j], nums[k]});
-                while (j != size - 1 && nums[j] == nums[j + 1])
-                    j++;
-                while (k != 0 && nums[k] == nums[k - 1])
-                    k--;
-                j++;
-                k--;
-            }
-            else if (nums[j] + nums[k] > -nums[i]){
-                while (k != 0 && nums[k] == nums[k - 1])
-                    k--;
-                k--;
-            }
-            else{
-                while (j != size && nums[j] == nums[j + 1])
-                    j++;
-                j++;
+    sort(nums.begin(), nums.end());
+    vector<vector<int>> answers;
+    for(int i = 0;i < size - 2; i++){
+        if(i == 0 || (i > 0 && nums[i] != nums[i-1])){
+            
+            int low = i + 1, high = size - 1, sum = 0 - nums[i];
+
+            while(low < high){
+                if(nums[low] + nums[high] == sum){
+                    answers.push_back({nums[i], nums[low], nums[high]});
+
+                    while(low < high && nums[low] == nums[low+1])   low++;
+                    while(low < high && nums[high] == nums[high+1]) high--;
+
+                    low++;
+                    high--;
+                }
+
+                else if (nums[low] + nums[high] < sum)  low++;
+                else high--;
             }
         }
-        while (i != size - 1 && nums[i] == nums[i + 1])
-            i++;
     }
-    for (auto itt : ans)
-        sort(itt.begin(), itt.end());
-    return ans;
+    return answers;
 }
 
 int main()
 {
-    vector<int> nums = {2,0,-2,-5,-5,-3,2,-4};
+    vector<int> nums = {0, 0, 0};
     vector<vector<int>> ans = threeSum(nums);
     for (auto itt : ans)
     {
