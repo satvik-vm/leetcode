@@ -1,30 +1,25 @@
 #include <iostream>
 #include <chrono>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
+int utils(int m, int n, int row, int column, vector<vector<int>> dp){
+	if(dp[m][n] != -1)	return dp[m][n];
+	if(row == m && column == n)	return 1;
+	if(row > m || column > n)	return 0;
+	int column_increase = utils(m, n, row, column + 1, dp);
+	int row_increase = utils(m, n, row + 1, column, dp);
+	return dp[m][n] = column_increase + row_increase;
+}
+
 int uniquePaths(int m, int n) {
-    int arr[n];
-    memset(arr, 0, sizeof(arr));
-    arr[0] = 1;
-    for(int i = 0;i < m;i++){
-        for(int j = 1;j < n;j++){
-            arr[j] += arr[j-1];
-        }
-    }
-    return arr[n-1];
+	vector<vector<int>> dp(m, vector<int>(n, -1));
+	return utils(m - 1, n - 1, 0, 0, dp);
 }
 
 int main(){
-    chrono::high_resolution_clock::time_point time_start, time_end;
-    chrono::microseconds time_diff;
-
-    int m = 3, n = 2;
-    time_start = chrono::high_resolution_clock::now();
-    int ans = uniquePaths(m, n);
-    time_end = chrono::high_resolution_clock::now();
-    cout << ans << endl;
-    time_diff = chrono::duration_cast<chrono::microseconds>(time_end - time_start);
-    cout << time_diff.count() << " microseconds" << endl;
+	int m = 3, n = 7;
+	cout << uniquePaths(m, n) << endl;
 }
