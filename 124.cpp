@@ -22,7 +22,7 @@ int utils(TreeNode* root, int &max_value){
 
 	int max_full = max(left_max + right_max + root->val, max_partial);
 
-	max_value = max_full;
+	max_value = max(max_full, max_value);
 
 	return max_partial;
 }
