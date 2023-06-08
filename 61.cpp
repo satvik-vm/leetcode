@@ -11,40 +11,67 @@ struct ListNode {
 };
 
 ListNode* rotateRight(ListNode* head, int k) {
-    if(head ==  NULL || k == 0) return head;
-    int len = 0;
-    ListNode *curr = head;
-    while(curr->next){
-        curr = curr->next;
-        len++;
-    }
-    len++;
+    // if(head ==  NULL || k == 0) return head;
+    // int len = 0;
+    // ListNode *curr = head;
+    // while(curr->next){
+    //     curr = curr->next;
+    //     len++;
+    // }
+    // len++;
 
-    k = k % len;
+    // k = k % len;
 
-    int pointer = len - k - 1;
-    curr = head;
+    // int pointer = len - k - 1;
+    // curr = head;
 
-    while(pointer--){
-        curr = curr->next;
-    }
+    // while(pointer--){
+    //     curr = curr->next;
+    // }
 
-    ListNode *next_node, *head_1;
-    if(curr->next){
-        next_node = curr->next;
-        head_1 = next_node;
-    }
-    else    return head;
+    // ListNode *next_node, *head_1;
+    // if(curr->next){
+    //     next_node = curr->next;
+    //     head_1 = next_node;
+    // }
+    // else    return head;
 
-    curr->next = NULL;
+    // curr->next = NULL;
 
-    while(next_node->next){
-        next_node = next_node->next;
-    }
+    // while(next_node->next){
+    //     next_node = next_node->next;
+    // }
 
-    next_node->next = head;
+    // next_node->next = head;
 
-    return head_1;
+    // return head_1;
+	if(head == NULL || k == 0)  return head;
+
+	int len = 0;
+	ListNode *curr = head;
+	while(curr->next){
+		curr = curr->next;
+		len++;
+	}
+	len++;
+	ListNode *tail = curr;
+	k = k % len;
+	if(k == 0)	return head;
+
+	int pt = len - k - 1;
+	curr = head;
+
+	while(pt--){
+		curr = curr->next;
+	}
+
+	ListNode *to_return = curr->next;
+
+	curr->next = NULL;
+
+	tail->next = head;
+
+	return to_return;
 }
 
 void addNode(ListNode *head, int data){
@@ -58,12 +85,12 @@ void addNode(ListNode *head, int data){
 
 int main(){
     ListNode *head = new ListNode(1);
-    // addNode(head, 1);
+    addNode(head, 2);
     // addNode(head, 2);
     // addNode(head, 4);
     // addNode(head, 5);
 
-    ListNode *curr = rotateRight(head, 1);
+    ListNode *curr = rotateRight(head, 2);
     while(curr->next){
         cout << curr->val << " ";
         curr = curr->next;

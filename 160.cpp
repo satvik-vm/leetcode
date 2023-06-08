@@ -24,7 +24,7 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
     ListNode *curr1 = headA;
     ListNode *curr2 = headB;
     if(m > n){
-        for(int i = 0;i < m-n;i++){
+        for(int i = 0;i < m-n; i++){
             curr1 = curr1->next;
         }
     }
