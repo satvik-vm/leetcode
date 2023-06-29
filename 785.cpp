@@ -55,7 +55,6 @@ bool isBipartite(vector<vector<int>> &graph)
 			bool answer = dfs(graph, color, i);
 			if (!answer)
 				return false;
-			// if(answer)  return answer;
 		}
 	}
 	return true;
