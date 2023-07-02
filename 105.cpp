@@ -13,7 +13,7 @@ struct TreeNode{
 	TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-TreeNode* utils(vector<int> preorder, vector<int> inorder, map<int, int> map, int inorder_start, int inorder_end, int preorder_start, int preorder_end){
+TreeNode* utils(vector<int>& preorder, vector<int>& inorder, map<int, int>& map, int inorder_start, int inorder_end, int preorder_start, int preorder_end){
 	if(inorder_start > inorder_end || preorder_start > preorder_end)	return NULL;
 
 	TreeNode* root = new TreeNode(preorder[preorder_start]);
